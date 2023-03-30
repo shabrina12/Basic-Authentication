@@ -12,8 +12,6 @@ namespace Tugas_4_Auth
 {
     class Program
     {
-        //static List<User> users = new List<User>();
-
         struct user
         {
             public string first_name;
@@ -21,29 +19,6 @@ namespace Tugas_4_Auth
             public string username;
             public string password;
         }
-
-        //class User
-        //{
-        //    public string first_name { get; set; }
-        //    public string last_name { get; set; }
-        //    public string username { get; set; }
-        //    public string password { get; set; }
-
-        //    public User(string firstName, string lastName, string pswd)
-        //    {
-        //        first_name = firstName;
-        //        last_name = lastName;
-        //        password = pswd;
-        //        username = $"{firstName[..3]}{lastName[..3]}";
-        //    }
-
-        //    public string GetUserData()
-        //    {
-        //        return $"Full Name : {first_name} {last_name} \n" +
-        //               $"User Name : {username} \n" +
-        //               $"Password  : {password}";
-        //    }
-        //}
 
         public static void Main(string[] args)
         {
@@ -57,7 +32,7 @@ namespace Tugas_4_Auth
                 string confirm;
 
                 do
-                {   
+                {
                     displaymenu();
                     Console.Write("Input (1-5): ");
                     choice = int.Parse(Console.ReadLine());
@@ -72,11 +47,11 @@ namespace Tugas_4_Auth
                             break;
                         case 3:
                             find(pengguna, usercount);
-                            break;                         
+                            break;
                         case 4:
                             login(pengguna, usercount);
-                            break;                                  
-                        case 5:                           
+                            break;
+                        case 5:
                             Environment.Exit(0);
                             break;
                         default:
@@ -88,8 +63,9 @@ namespace Tugas_4_Auth
                     Console.Clear();
                 } while (confirm == "y" || confirm == "Y");
             }
-            catch (FormatException) { 
-                Console.WriteLine("Invalid input"); 
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input");
             }
             Console.ReadLine();
         }
@@ -118,16 +94,6 @@ namespace Tugas_4_Auth
             Console.Write("Enter password: ");
             pengguna[usercount].password = Console.ReadLine().ToString();
 
-            //var user4 = new User("Fahri", "Hanif", "123456");
-            
-            //if (user.Any(u => u.username.Contains(pengguna[usercount].username)))
-            //{
-            //    pengguna[usercount].username = $"{pengguna[usercount].first_name[..2]}" +
-            //                     $"{pengguna[usercount].last_name[..2]}" +
-            //                     $"{user.Count(u => u.username.ToLower().Contains(pengguna[usercount].username.ToLower()))}";
-            //}
-            //users.Add(user4);
-
             var hasNumber = new Regex(@"[0-9]+"); //must contain at least a number
             var hasUpperChar = new Regex(@"[A-Z]+"); //min one upper case letter
             var hasMinimum8Chars = new Regex(@".{8,}"); //min 8 characters long.
@@ -137,7 +103,8 @@ namespace Tugas_4_Auth
             if (!isValidated)
             {
                 Console.WriteLine("Password must consist of minimum 8 characters, at least one uppercase letter, and must consist a number: ");
-            } else
+            }
+            else
             {
                 ++usercount;
             }
@@ -151,7 +118,7 @@ namespace Tugas_4_Auth
 
             Console.WriteLine("============== USER INFORMATION ================");
             Console.WriteLine();
-            
+
             while (i < usercount)
             {
                 if (pengguna[i].username != null)
@@ -163,7 +130,7 @@ namespace Tugas_4_Auth
                 }
                 i = i + 1;
             }
-            
+
             Console.WriteLine("Menu");
             Console.WriteLine("1. Edit User");
             Console.WriteLine("2. Delete User");
@@ -186,7 +153,7 @@ namespace Tugas_4_Auth
                 default:
                     Console.WriteLine("invalid input");
                     break;
-            }                        
+            }
 
             //UPDATE USER DATA
             static void update(user[] pengguna, ref int usercount)
